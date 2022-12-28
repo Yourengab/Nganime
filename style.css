@@ -1,0 +1,312 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  --main-color: #0b0b0b;
+  --btn: #88c37a;
+  --box: #171717;
+  --border: #cbcbcb;
+  --paragraph: #929292;
+  --danger: #ff4c4c;
+  --white: #fff;
+}
+
+* {
+  font-family: Inter;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--main-color);
+  height: 2000px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.flickity-page-dots {
+  display: none;
+}
+
+.slider {
+  width: 100vw;
+  position: relative;
+  display: flex;
+}
+
+.home-slider .slider .slider-text {
+  margin: 150px 80px 0 80px;
+  position: absolute;
+  z-index: 100;
+  color: var(--white);
+}
+
+.home-slider .slider .slider-text button {
+  margin-top: 10px;
+  padding: 10px 30px;
+  background-color: var(--btn);
+  border: none;
+  color: var(--main-color);
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.home-slider .slider .slider-text button a {
+  text-decoration: none;
+  color: white;
+}
+
+.home-slider .slider .slider-text h4 {
+  color: var(--btn);
+  font-weight: 400;
+  margin-bottom: 50px;
+  font-size: 20px;
+}
+
+.home-slider .slider .slider-text h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.home-slider .slider .slider-text p {
+  margin-top: 40px;
+  font-size: 20px;
+  width: 60%;
+}
+
+.home-slider .slider .slider-text .genres {
+  display: flex;
+}
+
+.home-slider .slider .slider-text .genre {
+  gap: 50px;
+  padding: 5px 20px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.home-slider .slider img {
+  width: 100%;
+  height: 100vh;
+}
+
+.searchAnime {
+  margin-top: 100px;
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.searchAnime h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.searchAnime p {
+  color: var(--paragraph);
+  font-size: 20px;
+  width: 30%;
+  text-align: center;
+}
+
+.searchAnime .searchBar {
+  display: flex;
+  align-items: center;
+}
+
+.searchAnime .searchBar input {
+  width: 400px;
+  padding: 8px 20px;
+  background-color: transparent;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--white);
+}
+
+.searchAnime .searchBar button {
+  margin-left: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  background-color: var(--btn);
+  color: white;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  border: none;
+}
+
+.searchAnime .searchBar button:hover {
+  background-color: #597c4d;
+}
+
+.resultContainer {
+  margin-top: 100px;
+  padding: 0 50px;
+}
+
+.resultContainer .swiper {
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+}
+
+.resultContainer .swiper h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.resultContainer .resultSlider {
+  overflow: hidden;
+  position: relative;
+}
+.resultContainer .resultSlider:hover img {
+  transform: scale(1.02);
+  border-radius: 0;
+}
+.resultContainer .resultSlider:hover .overlay {
+  transform: scale(1.02);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, #000000 100%);
+
+  border-radius: 0;
+}
+
+.resultContainer .resultSlider .overlay {
+  top: 0;
+  display: flex;
+  justify-content: center;
+  width: 220px;
+  height: 270px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, #000000 100%);
+  position: absolute;
+  z-index: 2;
+  border-radius: 20px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.resultContainer .resultSlider img {
+  width: 220px;
+  height: 270px;
+  border-radius: 20px;
+  transition: 0.3s ease-in-out;
+  overflow: hidden;
+}
+.resultContainer .resultSlider button {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 30px;
+  width: 180px;
+  height: 35px;
+  border-radius: 50px;
+  border: none;
+  background-color: var(--btn);
+  color: var(--main-color);
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.resultContainer .resultSlider h4 {
+  font-weight: 600;
+  width: 220px;
+}
+
+.resultContainer .resultSlider p {
+  color: var(--paragraph);
+}
+
+.detailPopup {
+  justify-content: center;
+  position: fixed;
+  display: none;
+  z-index: 10;
+  bottom: 0;
+  top: 0;
+}
+
+.detailPopup.show {
+  display: flex;
+}
+
+.detailPopup .popup {
+  display: flex;
+  background-color: var(--box);
+  padding: 50px 50px;
+  align-items: center;
+  width: 100vw;
+}
+
+.detailPopup .popup .cover img {
+  width: 300px;
+  height: 400px;
+  border-radius: 20px;
+}
+
+.detailPopup .popup .cover .genreList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 300px;
+  margin-top: 20px;
+}
+
+.detailPopup .popup .cover .genreList .genre {
+  padding: 5px 20px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.detailPopup .popup .cover .closeBtn {
+  color: red;
+  font-size: 30px;
+}
+
+.detailPopup .popup .detailText {
+  color: var(--white);
+  margin-left: 50px;
+}
+
+.detailPopup .popup .detailText h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--btn);
+  margin-bottom: 50px;
+}
+
+.detailPopup .popup .detailText p {
+  font-size: 20px;
+  color: var(--paragraph);
+  width: 80%;
+}
+
+.detailPopup .popup .detailText span {
+  background: none;
+  color: var(--white);
+  font-size: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.detailPopup .popup .detailText .closeBtn {
+  padding: 10px 15px;
+  background-color: var(--danger);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}

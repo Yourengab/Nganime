@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Slider -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <!-- Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    />
+    <title>Nganime</title>
+  </head>
+  <body>
+    <div class="home-slider main-carousel">
+      <div class="slider carousel-cell">
+        <img src="./img/bg-1.png" alt="slider-img" />
+        <div class="slider-text">
+          <h4>#1 Trending</h4>
+          <h1>Spy x Family</h1>
+          <div class="genres">
+            <span class="genre">Slice of life</span>
+            <span class="genre">Action</span>
+            <span class="genre">Comedy</span>
+          </div>
+          <p>
+            In order to ease tensions between Westalis and Ostania, Westalis Intelligence (WISE) assigns agent "Twilight" to form a family in Ostania in order to get close to Donovan Desmond, leader of Ostania's National Unity Party. To do
+            this, he will need to enroll his "child" into Eden Academy, where he can safely approach Donovan at an event. Twilight
+          </p>
+          <button>
+            <a href="#search">Search Anime</a>
+          </button>
+        </div>
+      </div>
+      <div class="slider carousel-cell">
+        <img src="./img/bg-2.png" alt="slider-img" />
+        <div class="slider-text">
+          <h4>#2 Trending</h4>
+          <h1>Kimetsu no Yaiba</h1>
+          <div class="genres">
+            <span class="genre">Action</span>
+            <span class="genre">Shounen</span>
+          </div>
+          <p>
+            Tanjiro Kamado, joins Inosuke Hashibira, a boy who was raised by a boar wearing the head of a boar, and Zenitsu Agatsuma, a scared boy who unleashes his true power when he sleeps, aboard the Infinity Train on a new mission with
+            a Pillar of Fire, Kyojuro Rengoku , To defeat the demons that have been torturing people and kill the demon slayers that oppose him!
+          </p>
+          <button>
+            <a href="#search">Search Anime</a>
+          </button>
+        </div>
+      </div>
+      <div class="slider carousel-cell">
+        <img src="./img/bg-3.png" alt="slider-img" />
+        <div class="slider-text">
+          <h4>#3 Trending</h4>
+          <h1>Jujustu Kaisen</h1>
+          <div class="genres">
+            <span class="genre">Action</span>
+            <span class="genre">Comedy</span>
+          </div>
+          <p>
+            Yuuji Itadori, a high school student who turns out to have extraordinary physical strength. At first, he lived his days as an ordinary high school boy, but then his life was rewarded when he had to help his friends who were
+            facing danger because of a curse.
+          </p>
+          <button>
+            <a href="#search">Search Anime</a>
+          </button>
+        </div>
+      </div>
+      <div class="slider carousel-cell">
+        <img src="./img/bg-4.png" alt="slider-img" />
+        <div class="slider-text">
+          <h4>#4 Trending</h4>
+          <h1>Bleach</h1>
+          <div class="genres">
+            <span class="genre">Action</span>
+            <span class="genre">Adventure</span>
+            <span class="genre">Fantasy</span>
+          </div>
+          <p>
+            Ichigo Kurosaki is an ordinary high schooler—until his family is attacked by a Hollow, a corrupt spirit that seeks to devour human souls. It is then that he meets a Soul Reaper named Rukia Kuchiki, who gets injured while
+            protecting Ichigo's family from the assailant. To save his family, Ichigo accepts Rukia's offer of taking her powers and becomes a Soul Reaper as a result.
+          </p>
+          <button>
+            <a href="#search">Search Anime</a>
+          </button>
+        </div>
+      </div>
+      <div class="slider carousel-cell">
+        <img src="./img/bg-5.png" alt="slider-img" />
+        <div class="slider-text">
+          <h4>#5 Trending</h4>
+          <h1>Naruto Shippuden</h1>
+          <div class="genres">
+            <span class="genre">Action</span>
+            <span class="genre">Shounen</span>
+            <span class="genre">Adventure</span>
+          </div>
+          <p>
+            Naruto Uzumaki left Konohagakure, the Hidden Leaf Village, for intense training following events which fueled his desire to be stronger. Now Akatsuki, the mysterious organization of elite rogue ninja, is closing in on their
+            grand plan which may threaten the safety of the entire shinobi world.
+          </p>
+          <button>
+            <a href="#search">Search Anime</a>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="searchAnime" id="search">
+      <h1>Search Anime</h1>
+      <p>Search anime, get the latest episode and find more about your favorite anime</p>
+      <div class="searchBar">
+        <input type="text" placeholder="Shingeki no kyoujin" class="inputKeyword" />
+        <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </div>
+
+    <div class="resultContainer">
+      <div class="animeContainer swiper">
+        <h1>Anime (TV)</h1>
+        <div class="animeSlider swiper-wrapper"></div>
+        <!-- swiper button -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+      <div class="movieContainer swiper">
+        <h1>Movie</h1>
+        <div class="movieSlider swiper-wrapper"></div>
+        <!-- swiper button -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+      <div class="specialContainer swiper">
+        <h1>Special Episode</h1>
+        <div class="specialSlider swiper-wrapper"></div>
+        <!-- swiper button -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+
+    <!-- Detail Popup -->
+    <div class="detailPopup"></div>
+
+    <!-- Slider -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- JS -->
+    <script src="script.js"></script>
+  </body>
+</html>
