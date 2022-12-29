@@ -59,11 +59,15 @@ a {
   border-radius: 50px;
   font-size: 16px;
   font-weight: 400;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.home-slider .slider .slider-text button:hover {
+  background-color: #6a945d;
 }
 
-.home-slider .slider .slider-text button a {
+.home-slider .slider .slider-text a {
   text-decoration: none;
-  color: white;
 }
 
 .home-slider .slider .slider-text h4 {
@@ -148,7 +152,7 @@ a {
 }
 
 .searchAnime .searchBar button:hover {
-  background-color: #597c4d;
+  background-color: #6a945d;
 }
 
 .resultContainer {
@@ -156,10 +160,18 @@ a {
   padding: 0 50px;
 }
 
-.resultContainer .swiper {
+.resultContainer .specialContainer,
+.resultContainer .animeContainer,
+.resultContainer .movieContainer {
   color: var(--white);
   display: flex;
   flex-direction: column;
+}
+
+.resultContainer .specialContainer.none,
+.resultContainer .animeContainer.none,
+.resultContainer .movieContainer.none {
+  display: none;
 }
 
 .resultContainer .swiper h1 {
@@ -285,6 +297,7 @@ a {
   font-weight: 600;
   color: var(--btn);
   margin-bottom: 50px;
+  width: 80%;
 }
 
 .detailPopup .popup .detailText p {
@@ -309,4 +322,36 @@ a {
   color: white;
   font-size: 18px;
   cursor: pointer;
+}
+
+.nullAlert {
+  color: white;
+  display: flex;
+  align-items: center;
+  margin: 0 50px;
+  overflow: hidden;
+  background-color: var(--box);
+  width: 400px;
+  height: 20px;
+  padding: 20px 30px;
+  border-left: 4px solid var(--danger);
+  border-radius: 0px 50px 50px 0px;
+  position: fixed;
+  bottom: 50px;
+  z-index: 2;
+  transform: translate(-200%);
+  transition: 0.3s ease-in-out;
+}
+.nullAlert.show {
+  transform: translate(0%);
+}
+
+.nullAlert i {
+  color: #ff4c4c;
+  font-size: 32px;
+  margin-right: 20px;
+}
+
+.nullAlert p {
+  font-size: 17px;
 }

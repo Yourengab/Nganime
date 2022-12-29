@@ -1,5 +1,7 @@
 // get anime data
+
 const searchBtn = document.querySelector(".searchBtn");
+
 searchBtn.addEventListener("click", function () {
   const inputKeyword = document.querySelector(".inputKeyword");
   const apiUrl = "https://api.jikan.moe/v4/" + "anime?q=" + inputKeyword.value;
@@ -12,7 +14,11 @@ searchBtn.addEventListener("click", function () {
       const animeContainer = document.querySelector(".animeSlider");
       const movieContainer = document.querySelector(".movieSlider");
       const specialContainer = document.querySelector(".specialSlider");
-
+      const animeSection = document.querySelector(".animeContainer");
+      const movieSection = document.querySelector(".movieContainer");
+      const specialSection = document.querySelector(".specialContainer");
+      const nullAlert = document.querySelector(".nullAlert");
+      console.log(nullAlert);
       // Category
       const animeCategory = animeList.reduce((acc, animes) => {
         if (!acc[animes.type]) {
@@ -21,41 +27,53 @@ searchBtn.addEventListener("click", function () {
         acc[animes.type].push(animes);
         return acc;
       }, {});
-      // stored category data
-      const { Movie, Special, TV } = animeCategory;
-
       // stored cards
       let animeCards = "";
       let movieCards = "";
       let specialCards = "";
 
+      // stored category data
+      const { Movie, Special, TV } = animeCategory;
+
+      // Map the result and put to cards
+      function tvMap() {
+        TV.map((m) => (animeCards += getAnimeData(m)));
+      }
+      function specialMap() {
+        Special.map((m) => (specialCards += getAnimeData(m)));
+      }
+      function movieMap() {
+        Movie.map((m) => (movieCards += getAnimeData(m)));
+      }
+
       // Dont even ask
       if (!Special && !TV && !Movie) {
-        alert("Animes that you search is not found try searching other anime");
+        nullAlert.classList.add("show");
+        setTimeout(function () {
+          nullAlert.classList.remove("show");
+        }, 2000);
+        console.log("yes");
       }
-      // Special contain OVA, ONA.
       if (!Special) {
         console.log("cannot find special");
-        document.querySelector(".specialContainer").style.display = "none";
+        specialSection.classList.add("none");
       } else {
-        document.querySelector(".specialContainer").style.display = "flex";
-        Special.map((m) => (specialCards += getAnimeData(m)));
-        // ONA.map((m) => (specialCards += getAnimeData(m)));
-        // OVA.map((m) => (specialCards += getAnimeData(m)));
+        specialSection.classList.remove("none");
+        specialMap();
       }
       if (!TV) {
         console.log("cannot find TV");
-        document.querySelector(".animeContainer").style.display = "none";
+        animeSection.classList.add("none");
       } else {
-        document.querySelector(".specialContainer").style.display = "flex";
-        TV.map((m) => (animeCards += getAnimeData(m)));
+        animeSection.classList.remove("none");
+        tvMap();
       }
       if (!Movie) {
         console.log("cannot find Movie");
-        document.querySelector(".movieContainer").style.display = "none";
+        movieSection.classList.add("none");
       } else {
-        document.querySelector(".specialContainer").style.display = "flex";
-        Movie.map((m) => (movieCards += getAnimeData(m)));
+        movieSection.classList.remove("none");
+        movieMap();
       }
 
       // Display category result to broweser
@@ -85,7 +103,7 @@ function detailProcess() {
     details.addEventListener("click", function () {
       detailcontainer.classList.add("show");
       detailcontainer.style.display = "flex";
-
+      const failedText = "Cannot get anime info, this might happen because the anime is new or still in production process, we will update it soon.";
       const animeId = this.dataset.idmal;
       fetch("https://api.jikan.moe/v4/anime/" + animeId)
         .then((response) => response.json())
@@ -105,7 +123,7 @@ function detailProcess() {
           <button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
           <h1>${detailData.title}</h1>
           <p>
-          ${detailData.synopsis == "null" ? "Tidak Ada Detail yang harus ditampilkan" : detailData.synopsis}
+          ${detailData.synopsis === null ? failedText : detailData.synopsis}
           </p>
           <span class="seeEps">Latest Episode</span>
           </div>
@@ -114,6 +132,7 @@ function detailProcess() {
           closeBtn.addEventListener("click", function () {
             detailcontainer.classList.remove("show");
             detailcontainer.style.display = "none";
+            ``;
           });
         });
     });
