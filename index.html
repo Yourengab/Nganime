@@ -151,11 +151,20 @@
     </div>
 
     <!-- Detail Popup -->
-    <div class="detailPopup"></div>
+    <div class="detailPopupContainer">
+      <div class="detailPopup"></div>
+      <div class="episodeSection">
+        <button class="toDetail">Back</button>
+
+        <div class="episodeContainer"></div>
+        <div class="loadingAlert"></div>
+      </div>
+    </div>
     <div class="nullAlert">
       <i class="fa-solid fa-circle-exclamation"></i>
       <p>The anime you searched for was not found</p>
     </div>
+    <audio src="./sound/notification.mp3" class="notification"></audio>
     <!-- Slider -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

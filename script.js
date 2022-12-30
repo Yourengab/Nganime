@@ -18,7 +18,7 @@ searchBtn.addEventListener("click", function () {
       const movieSection = document.querySelector(".movieContainer");
       const specialSection = document.querySelector(".specialContainer");
       const nullAlert = document.querySelector(".nullAlert");
-      console.log(nullAlert);
+      const notificationSound = document.querySelector(".notification");
       // Category
       const animeCategory = animeList.reduce((acc, animes) => {
         if (!acc[animes.type]) {
@@ -48,11 +48,11 @@ searchBtn.addEventListener("click", function () {
 
       // Dont even ask
       if (!Special && !TV && !Movie) {
+        notificationSound.play();
         nullAlert.classList.add("show");
         setTimeout(function () {
           nullAlert.classList.remove("show");
-        }, 2000);
-        console.log("yes");
+        }, 1700);
       }
       if (!Special) {
         console.log("cannot find special");
@@ -99,6 +99,7 @@ function getAnimeData(anime) {
 function detailProcess() {
   const detailBtn = document.querySelectorAll(".detailBtn");
   const detailcontainer = document.querySelector(".detailPopup");
+
   detailBtn.forEach((details) => {
     details.addEventListener("click", function () {
       detailcontainer.classList.add("show");
@@ -109,8 +110,6 @@ function detailProcess() {
         .then((response) => response.json())
         .then((response) => {
           const detailData = response.data;
-          console.log(detailData.title);
-
           // display the data
           detailcontainer.innerHTML = ` <div class="popup">
           <div class="cover">
@@ -125,9 +124,11 @@ function detailProcess() {
           <p>
           ${detailData.synopsis === null ? failedText : detailData.synopsis}
           </p>
-          <span class="seeEps">Latest Episode</span>
+          <span class="seeEpisode" data-epsid="${detailData.mal_id}">Latest Episode</span>
           </div>
           </div>`;
+          detailProcessEps();
+
           const closeBtn = document.querySelector(".closeBtn");
           closeBtn.addEventListener("click", function () {
             detailcontainer.classList.remove("show");
@@ -137,6 +138,70 @@ function detailProcess() {
         });
     });
   });
+}
+// Get Episode
+function detailProcessEps() {
+  const episodeSection = document.querySelector(".episodeSection");
+  const episodeContainer = document.querySelector(".episodeContainer");
+  const episodeBtn = document.querySelector(".seeEpisode");
+
+  console.log(episodeBtn);
+  episodeBtn.addEventListener("click", function () {
+    const loadingAlert = document.querySelector(".loadingAlert");
+    loadingAlert.classList.add("show");
+    loadingAlert.style.borderLeftColor = "#88c37a";
+    loadingAlert.innerHTML = `
+          <i class="fa-solid fa-circle-exclamation" style="color: #88c37a;"></i>
+          <p>Loading episodes</p>
+          `;
+    episodeSection.classList.add("show");
+    const epsId = this.dataset.epsid;
+    fetch("https://api.jikan.moe/v4/anime/" + epsId + "/videos/episodes")
+      .then((response) => response.json())
+      .then((response) => {
+        // variable
+
+        const episodes = response.data;
+        const responseTime = performance.now() % 100;
+        console.log(responseTime);
+        console.log(episodes);
+        if (episodes.length < 1) {
+          episodeContainer.innerHTML = "";
+          loadingAlert.innerHTML = `
+          <i class="fa-solid fa-circle-exclamation" style="color: #ff4c4c;"></i>
+          <p>theres an error while getting the anime episode</p>
+          `;
+          loadingAlert.style.width = "450px";
+          loadingAlert.style.borderLeftColor = "#ff4c4c";
+          setTimeout(function () {
+            loadingAlert.classList.remove("show");
+          }, 1700);
+        } else {
+          setTimeout(function () {
+            loadingAlert.classList.remove("show");
+          }, responseTime);
+
+          let episodeList = "";
+          // map episode
+          episodes.map((anime) => (episodeList += showEpisode(anime)));
+          console.log(episodes);
+          episodeContainer.innerHTML = episodeList;
+        }
+      });
+  });
+
+  const toDetail = document.querySelector(".toDetail");
+  toDetail.addEventListener("click", function () {
+    episodeSection.classList.remove("show");
+  });
+}
+
+function showEpisode(anime) {
+  return `  
+  <div class="episode">
+  <img src="${anime.images.jpg.image_url}" alt="episode" />
+  <p>${anime.episode} : ${anime.title}</p>
+</div>`;
 }
 
 // slider
