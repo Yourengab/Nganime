@@ -1,6 +1,7 @@
 // get anime data
 
 const searchBtn = document.querySelector(".searchBtn");
+const notificationSound = document.querySelector(".notification");
 
 searchBtn.addEventListener("click", function () {
   const inputKeyword = document.querySelector(".inputKeyword");
@@ -18,7 +19,6 @@ searchBtn.addEventListener("click", function () {
       const movieSection = document.querySelector(".movieContainer");
       const specialSection = document.querySelector(".specialContainer");
       const nullAlert = document.querySelector(".nullAlert");
-      const notificationSound = document.querySelector(".notification");
       // Category
       const animeCategory = animeList.reduce((acc, animes) => {
         if (!acc[animes.type]) {
@@ -144,7 +144,6 @@ function detailProcessEps() {
   const episodeSection = document.querySelector(".episodeSection");
   const episodeContainer = document.querySelector(".episodeContainer");
   const episodeBtn = document.querySelector(".seeEpisode");
-
   console.log(episodeBtn);
   episodeBtn.addEventListener("click", function () {
     const loadingAlert = document.querySelector(".loadingAlert");
@@ -166,6 +165,7 @@ function detailProcessEps() {
         console.log(responseTime);
         console.log(episodes);
         if (episodes.length < 1) {
+          notificationSound.play();
           episodeContainer.innerHTML = "";
           loadingAlert.innerHTML = `
           <i class="fa-solid fa-circle-exclamation" style="color: #ff4c4c;"></i>
