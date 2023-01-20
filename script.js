@@ -205,22 +205,34 @@ function showEpisode(anime) {
 }
 
 // slider
-const homeSlider = document.querySelector(".main-carousel");
-var flkty = new Flickity(homeSlider, {
-  // options
-  cellAlign: "center",
-  autoPlay: true,
-});
-const animeSlider = document.querySelector(".anime-carousel");
-var flkty = new Flickity(animeSlider, {
-  // options
-  cellAlign: "left",
-  freeScroll: false,
-  contain: true,
+var swiper = new Swiper(".swiper", {
+  slidesPerView: 1,
+  breakpoints: {
+    1200: {
+      slidesPerView: 5,
+    },
+    1024: {
+      slidesPerView: 4,
+    },
+    820: {
+      slidesPerView: 3,
+    },
+    550: {
+      slidesPerView: 2,
+    },
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
 });
 
-var swiper = new Swiper(".swiper", {
-  slidesPerView: 5,
+var swiper = new Swiper(".headerContainer", {
+  autoplay: {
+    delay: 3000,
+  },
+  grabCursor: true,
+  rewind: true,
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
